@@ -8,7 +8,7 @@ then
 fi
 
 # install deps
-apt install git linux-headers-generic build-essential -y
+apt install git linux-headers-$(uname -r) build-essential -y
 
 # install driver
 cd /tmp
@@ -19,3 +19,6 @@ cd rtl8812au_rtl8821au
 nice make -j$(nproc)
 make install
 modprobe -v 8812au
+echo '8812au' >> /etc/modules
+cd
+rm -rv /tmp/wireless_driver
